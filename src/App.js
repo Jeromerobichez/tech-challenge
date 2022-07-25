@@ -1,7 +1,39 @@
+import React, {useState} from 'react'
 import logo from './logo.svg';
 import './App.css';
+import Form from './form'
+
+const defaultData = ['Eleftheria', 'Gennadios', 'Lysimachos']
 
 function App() {
+const [data, setData ] = useState(defaultData)
+const [name, setName ] = useState('')
+
+const handleChange = (e) => {
+  e.preventDefault();
+  setName(e.target.value)
+
+}
+const handleSubmit = (e) => {
+e.preventDefault()
+  setData([...data, name])
+  console.log("DATA CEST", data)
+
+}
+
+const arrayChunk = (arr, n) => {
+  const array = arr.slice();
+  const chunks = [];
+  while (array.length) chunks.push(array.splice(0, n));
+  return chunks;
+};
+
+let usableData = arrayChunk(data, 3)
+/* console.log('DATA', data) */
+console.log('NAME', name)
+console.log('DATA', data)
+console.log('usableData', usableData)
+
   return (
     <div className="App">
       <header className='App-header'>
@@ -14,18 +46,25 @@ function App() {
   
 
   <h2>Ajouter un(e) Argonaute</h2>
-  <form class="new-member-form">
-    <label for="name">Nom de l&apos;Argonaute</label>
-    <input id="name" name="name" type="text" placeholder="Charalampos" />
-    <button type="submit">Envoyer</button>
+{/*   <Form setName={setName} /> */}
+<form className="new-member-form">
+    <label id="name">Nom de l&apos;Argonaute
+    <input id="name" name="name" type="text" placeholder="Charalampos"  onChange={handleChange}  />
+    </label>
+    <button type="submit"
+    onClick={handleSubmit}>Envoyer</button>
   </form>
   
 
   <h2>Membres de l'équipage</h2>
-  <section class="member-list">
-    <div class="member-item">Eleftheria</div>
-    <div class="member-item">Gennadios</div>
-    <div class="member-item">Lysimachos</div>
+  <section className="member-list">
+  <div className="member-grid">
+    {data.map((name, i) =>
+    
+    <div key={i}
+    className="member-item">{name}</div> 
+    )}
+    </div>
   </section>
 </main>
 

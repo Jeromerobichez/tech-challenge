@@ -35,3 +35,8 @@
     transform: rotate(360deg);
   }
 }
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+}
