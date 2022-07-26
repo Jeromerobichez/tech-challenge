@@ -1,38 +1,44 @@
-import React, {useState} from 'react'
-import logo from './logo.svg';
-import './App.css';
-import Form from './form'
+import React, {useEffect, useState} from 'react'
 
-const defaultData = ['Eleftheria', 'Gennadios', 'Lysimachos']
+import './App.css';
+/* import Form from './form' */
+import axios from 'axios'
 
 function App() {
-const [data, setData ] = useState(defaultData)
-const [name, setName ] = useState('')
 
+const [name, setName ] = useState('')
+const [crew, setCrew] = useState([])
+const [message, setMessage] = useState('')
+useEffect(() => {
+  axios
+  .get('https://challenge.osc-fr1.scalingo.io')
+  .then(res => {
+    setCrew(res.data)
+  })
+  .catch(e => {
+    setMessage(`Erreur lors de la création : ${e.message}`)
+    console.log(message)
+  })
+
+}, []);
 const handleChange = (e) => {
   e.preventDefault();
   setName(e.target.value)
 
 }
 const handleSubmit = (e) => {
-e.preventDefault()
-  setData([...data, name])
-  console.log("DATA CEST", data)
-
+  e.preventDefault()
+  axios
+    .post('https://challenge.osc-fr1.scalingo.io', {name})
+    .then(res => {
+      setCrew(res.data)
+    })
+    .catch(e => {
+      setMessage(`Erreur lors de la création : ${e.message}`)
+      console.log(message)
+    })
 }
 
-const arrayChunk = (arr, n) => {
-  const array = arr.slice();
-  const chunks = [];
-  while (array.length) chunks.push(array.splice(0, n));
-  return chunks;
-};
-
-let usableData = arrayChunk(data, 3)
-/* console.log('DATA', data) */
-console.log('NAME', name)
-console.log('DATA', data)
-console.log('usableData', usableData)
 
   return (
     <div className="App">
@@ -59,10 +65,11 @@ console.log('usableData', usableData)
   <h2>Membres de l'équipage</h2>
   <section className="member-list">
   <div className="member-grid">
-    {data.map((name, i) =>
+    hello
+    {crew.map((member, i) =>
     
-    <div key={i}
-    className="member-item">{name}</div> 
+    <div key={member._id}
+    className="member-item">{member.name}</div> 
     )}
     </div>
   </section>
