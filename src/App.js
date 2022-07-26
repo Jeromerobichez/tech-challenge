@@ -65,7 +65,6 @@ const handleSubmit = (e) => {
   <h2>Membres de l'équipage</h2>
   <section className="member-list">
   <div className="member-grid">
-    hello
     {crew.map((member, i) =>
     
     <div key={member._id}
