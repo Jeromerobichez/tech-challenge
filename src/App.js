@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 import './App.css';
-/* import Form from './form' */
+import Form from './form'
 import axios from 'axios'
 
 function App() {
@@ -52,16 +52,8 @@ const handleSubmit = (e) => {
   
 
   <h2>Ajouter un(e) Argonaute</h2>
-{/*   <Form setName={setName} /> */}
-<form className="new-member-form">
-    <label id="name">Nom de l&apos;Argonaute
-    <input id="name" name="name" type="text" placeholder="Charalampos"  onChange={handleChange}  />
-    </label>
-    <button type="submit"
-    onClick={handleSubmit}>Envoyer</button>
-  </form>
+ <Form handleSubmit={handleSubmit} handleChange={handleChange}/>
   
-
   <h2>Membres de l'équipage</h2>
   <section className="member-list">
   <div className="member-grid">
@@ -75,7 +67,7 @@ const handleSubmit = (e) => {
 </main>
 
 <footer>
-  <p>Réalisé par Jason en Anthestérion de l'an 515 avant JC</p>
+  <p>Réalisé par Jason et Jérôme en Anthestérion de l'an 515 avant JC</p>
 </footer>
     </div>
   );

@@ -1,16 +1,17 @@
 import React from 'react'
 
-const Form = (setName) => {
+const Form = ({setName, handleSubmit, handleChange} ) => {
   
 
 
 return(
-    <form className="new-member-form">
-    <label id="name">Nom de l&apos;Argonaute
-    <input id="name" name="name" type="text" placeholder="Charalampos"  onChange={(e)=> setName(e.target.value)}  />
-    </label>
-    <button type="submit">Envoyer</button>
-  </form>
+  <form className="new-member-form">
+  <label className="form-label" id="name">Nom de l&apos;Argonaute
+  <input className="form-input"id="name" name="name" type="text" placeholder="Charalampos"  onChange={handleChange}  />
+  </label>
+  <button type="submit"
+  onClick={handleSubmit}>Envoyer</button>
+</form>
 )
 }
 export default Form;

@@ -38,5 +38,16 @@
 .member-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  column-gap: 2px;
+  border: 2px solid #e07474 ;
+  margin: 0 5rem
+  
 
+} 
+  .member-item {
+color: #e07474;
+
+  }
+.form-input{
+  margin: 2px;
 }
